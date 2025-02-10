@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "440164340484",
+    "project_id": "testfirebase-5892f",
+    "storage_bucket": "testfirebase-5892f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440164340484:android:32877dd8a131703ee33651",
+        "android_client_info": {
+          "package_name": "com.example.taskify"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGlSmVshlWw6BtOqZYU95q-S1PAEinTcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:440164340484:android:931a51300001e06ee33651",
+        "android_client_info": {
+          "package_name": "com.example.test_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGlSmVshlWw6BtOqZYU95q-S1PAEinTcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
