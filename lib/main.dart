@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:taskify/Code_Folders/Pages/HomeScreen/HomeScreen_main.dart';
+import 'package:taskify/Code_Folders/Pages/HomeScreen/HomeScreen_.dart';
 import 'package:taskify/firebase_options.dart';
 
 import 'Code_Folders/Pages/Landing_Pages/LoginPage.dart';
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
                 child: Text("Something went wrong"),
               );
             } else if (snapshot.hasData) {
-              return HomeScreenMain();
+              return HomeScreen();
             } else {
               return Loginpage();
             }
