@@ -108,71 +108,89 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               showModalBottomSheet(
                 context: context,
+                isScrollControlled: true, // Allows the bottom sheet to resize
+                backgroundColor: Colors
+                    .transparent, // Optional: makes the background transparent
                 builder: (context) {
-                  return Container(
-                    height: 350,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                              left: 20.0, right: 20, top: 30),
-                          child: TextField(
-                            controller: titleController,
-                            decoration: const InputDecoration(
+                  return Padding(
+                    padding: const EdgeInsets.only(
+                        bottom:
+                            20.0), // Optional padding to avoid content from being too close to the keyboard
+                    child: Container(
+                      height: 550,
+                      padding: const EdgeInsets.all(20),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(20),
+                          topRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize
+                            .min, // Prevents it from taking the whole screen
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, right: 20, top: 30),
+                            child: TextField(
+                              controller: titleController,
+                              decoration: const InputDecoration(
                                 labelText: "Title",
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
                                 focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
                                 errorBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black))),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                              ),
+                              maxLines: 2,
+                            ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 20.0,
-                            right: 20,
-                            top: 10,
-                          ),
-                          child: TextField(
-                            controller: descriptionController,
-                            decoration: const InputDecoration(
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 20.0, right: 20, top: 10),
+                            child: TextField(
+                              controller: descriptionController,
+                              decoration: const InputDecoration(
                                 labelText: "Description",
                                 enabledBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
                                 focusedBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black)),
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
                                 errorBorder: OutlineInputBorder(
-                                    borderSide:
-                                        BorderSide(color: Colors.black))),
-                            maxLines: 3,
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                              ),
+                              maxLines: 3,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            ElevatedButton(
+                          SizedBox(height: 15),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton(
                                 onPressed: () {
                                   addTaskToFirestore();
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Add Task")),
-                            ElevatedButton(
+                                child: const Text("Add Task"),
+                              ),
+                              ElevatedButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
-                                child: const Text("Cancel")),
-                          ],
-                        ),
-                      ],
+                                child: const Text("Cancel"),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   );
                 },
