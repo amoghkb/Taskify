@@ -86,58 +86,102 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home Screen"),
+        title: const Text(
+          "Home Screen",
+          style: TextStyle(color: Colors.blueGrey, fontWeight: FontWeight.bold),
+        ),
         leading: Builder(
           builder: (context) {
             return IconButton(
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: const Icon(Icons.person),
+              icon: const Icon(
+                Icons.person,
+                color: Colors.blueGrey,
+              ),
             );
           },
         ),
         actions: [
           IconButton(
             onPressed: () {
-              showDialog(
+              showModalBottomSheet(
                 context: context,
                 builder: (context) {
-                  return AlertDialog(
-                    title: const Text("Add Task"),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
+                  return Container(
+                    height: 350,
+                    child: Column(
                       children: [
-                        TextFormField(
-                          controller: titleController,
-                          decoration: const InputDecoration(labelText: "Title"),
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 20.0, right: 20, top: 30),
+                          child: TextField(
+                            controller: titleController,
+                            decoration: const InputDecoration(
+                                labelText: "Title",
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
+                                errorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                          ),
                         ),
-                        TextFormField(
-                          controller: descriptionController,
-                          decoration:
-                              const InputDecoration(labelText: "Description"),
-                          maxLines: 3,
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 20.0,
+                            right: 20,
+                            top: 10,
+                          ),
+                          child: TextField(
+                            controller: descriptionController,
+                            decoration: const InputDecoration(
+                                labelText: "Description",
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black)),
+                                errorBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.black))),
+                            maxLines: 3,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                                onPressed: () {
+                                  addTaskToFirestore();
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Add Task")),
+                            ElevatedButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text("Cancel")),
+                          ],
                         ),
                       ],
                     ),
-                    actions: [
-                      ElevatedButton(
-                          onPressed: () async {
-                            await addTaskToFirestore();
-                            Navigator.pop(context);
-                          },
-                          child: const Text("Add")),
-                      ElevatedButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          child: const Text("Cancel"))
-                    ],
                   );
                 },
               );
             },
-            icon: const Icon(CupertinoIcons.plus),
+            icon: const Icon(
+              CupertinoIcons.plus,
+              color: Colors.blueGrey,
+            ),
           )
         ],
       ),
@@ -150,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.blueGrey,
                   child: Center(
                     child: Text(
-                      "${selectedDate.day}/${selectedDate.month}/${selectedDate.year}",
+                      "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
                       style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -162,20 +206,22 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(top: 550),
               child: Align(
                 alignment: Alignment.bottomLeft,
-                child: IconButton(
-                  onPressed: () async {
-                    await FirebaseAuth.instance.signOut();
-                    if (mounted) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Loginpage(),
-                        ),
-                        (route) => false,
-                      );
-                    }
-                  },
-                  icon: const Icon(Icons.logout),
+                child: Center(
+                  child: IconButton(
+                    onPressed: () async {
+                      await FirebaseAuth.instance.signOut();
+                      if (mounted) {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Loginpage(),
+                          ),
+                          (route) => false,
+                        );
+                      }
+                    },
+                    icon: const Icon(Icons.logout),
+                  ),
                 ),
               ),
             ),
@@ -202,15 +248,16 @@ class _HomeScreenState extends State<HomeScreen> {
               showNavigationButtons: true,
               weekStartFrom: WeekStartFrom.Monday,
               borderRadius: BorderRadius.circular(7),
-              activeBackgroundColor:
-                  Colors.blueGrey, // Highlight the selected date in purple
+              activeBackgroundColor: Colors.blueGrey,
+
               activeTextColor: Colors.white,
               inactiveBackgroundColor: Colors.blueGrey.withOpacity(.3),
               inactiveTextColor: Colors.white,
               disabledTextColor: Colors.grey,
               disabledBackgroundColor: Colors.grey.withOpacity(.3),
               activeNavigatorColor: Colors.blueGrey,
-              inactiveNavigatorColor: Colors.grey,
+              inactiveNavigatorColor: Colors.blueGrey,
+
               monthColor: Colors.blueGrey,
             ),
             Expanded(
@@ -240,7 +287,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       itemBuilder: (context, index) {
                         var userdata = snapshot.data!.docs[index];
                         return ListTile(
-                          title: Text(userdata["Title"]),
+                          title: Text(
+                            userdata["Title"],
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           subtitle: Text(userdata["Description"]),
                           onLongPress: () {
                             showDialog(
@@ -251,12 +301,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                   content: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
-                                      TextFormField(
+                                      TextField(
                                         controller: updateTitleController,
                                         decoration: const InputDecoration(
                                             labelText: "Title"),
                                       ),
-                                      TextFormField(
+                                      TextField(
                                         controller: updateDescriptionController,
                                         decoration: const InputDecoration(
                                             labelText: "Description"),

@@ -1,16 +1,37 @@
-# taskify
+# Taskify - A Task Management App
 
-A new Flutter project.
+**Taskify** is a Flutter-based mobile application that allows users to manage their tasks on a daily basis. It integrates with Firebase for user authentication and data storage. The app allows users to create, update, delete, and view tasks for a specific date. It also uses a calendar widget for easy navigation between dates and tasks.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- **User Authentication**:
+    - Sign up, login, and sign-out functionalities using Firebase Authentication.
 
-A few resources to get you started if this is your first Flutter project:
+- **Task Management**:
+    - Add, update, and delete tasks.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Calendar View**:
+    - Users can view and navigate tasks by selecting a date using a horizontal week calendar.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Firebase Integration**:
+    - Tasks are stored in Firebase Firestore for real-time data syncing.
+
+- **Responsive UI**:
+    - The app’s interface adapts to various screen sizes.
+
+## Tech Stack
+
+- **Flutter**:
+    - Used for cross-platform mobile development.
+
+- **Firebase Authentication**:
+    - Handles user login and authentication.
+
+- **Firebase Firestore**:
+    - A real-time database used to store tasks.
+
+- **Horizontal Week Calendar**:
+    - For an interactive calendar view to select and navigate dates.
+
+- **Dart**:
+    - The programming language used for Flutter app development.
