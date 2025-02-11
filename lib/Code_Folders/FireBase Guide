@@ -1,0 +1,33 @@
+1. Create a Firebase Project
+Visit Firebase Console.
+Click on Add Project and follow the instructions.
+Choose a project name (e.g., Taskify) and select Google Analytics settings.
+
+
+2. Integrate Firebase with Flutter
+Add Firebase SDK to your Flutter project:
+Open pubspec.yaml and add dependencies:
+yaml
+dependencies:
+  firebase_core: latest_version
+  firebase_auth: latest_version
+  cloud_firestore: latest_version
+Run flutter pub get to install the dependencies.
+Set up Firebase for Android:
+Download google-services.json from Firebase Console.
+Place it in the android/app directory.
+Set up Firebase for iOS:
+Download GoogleService-Info.plist.
+Place it in the ios/Runner directory.
+Ensure iOS platform version is at least 10.0 in pubspec.yaml.
+
+
+3. Enable Firebase Authentication
+In Firebase Console, go to Authentication → Get Started.
+Enable sign-in methods (e.g., Email/Password, Google, etc.).
+
+
+4. Set Up Firebase Firestore
+In Firebase Console, go to Firestore Database → Create Database.
+Choose test mode (for development).
+Create collections (e.g., tasks, users) and set up the document structure based on your app's requirements.
